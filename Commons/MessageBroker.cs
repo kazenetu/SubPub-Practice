@@ -21,4 +21,20 @@ public static class MessageBroker
         // 発行時に呼ばれるメソッドを追加
         Subscribers[keyword].Add(action);
     }
+
+    /// <summary>
+    /// 発行メソッド
+    /// </summary>
+    /// <param name="keyword">キーワード</param>
+    /// <param name="data">値</param>
+    public static void Publish(string keyword, object data)
+    {
+        if (Subscribers.TryGetValue(keyword, out var actions))
+        {
+            foreach (var action in actions)
+            {
+                action(data);
+            }
+        }
+    }
 }
