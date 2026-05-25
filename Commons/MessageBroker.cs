@@ -8,18 +8,30 @@ public static class MessageBroker
     private static Dictionary<string, List<Action<object>>> Subscribers = [];
 
     /// <summary>
+    /// キーワード別クラス名リスト
+    /// </summary>
+    private static Dictionary<string, List<string>> ClassNames = [];
+
+    /// <summary>
     /// 購買メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="action">発行時に呼ばれるメソッド</param>
     public static void Subscribe(string keyword, Action<object> action)
     {
-        // キーワードが存在しない場合は生成
+        // アクションリストにキーワードが存在しない場合は生成
         if (!Subscribers.ContainsKey(keyword))
             Subscribers.Add(keyword, []);
 
         // 発行時に呼ばれるメソッドを追加
         Subscribers[keyword].Add(action);
+
+        // クラスリストにキーワードが存在しない場合は生成
+        if (!ClassNames.ContainsKey(keyword))
+            ClassNames.Add(keyword, []);
+
+        // クラス名を追加
+        ClassNames[keyword].Add(action.Method?.DeclaringType?.Name ?? string.Empty);
     }
 
     /// <summary>
