@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace SubPub_Practice.Commons;
 
 public static class MessageBroker
@@ -53,8 +55,17 @@ public static class MessageBroker
     {
         if (Subscribers.TryGetValue(keyword, out var actions))
         {
+            // 発行元クラスを取得
+            var frame = new StackFrame(1);
+            var method = frame.GetMethod();
+            var className = method?.DeclaringType?.Name;
+
             foreach (var action in actions)
             {
+                // アクションのクラス名と呼び出し元クラスが一致の場合は処理しない
+                var actionClassName = action.Method?.DeclaringType?.Name;
+                if (className == actionClassName) continue;
+
                 action(data);
             }
         }
