@@ -43,6 +43,7 @@ public static class MessageBroker
     /// <param name="action">購買時に登録したメソッド</param>
     public static void UnSubscribe(string keyword, Action<object> action)
     {
+        ClassNames[keyword].Remove(action.Method?.DeclaringType?.Name ?? string.Empty);
         Subscribers[keyword].Remove(action);
     }
 
