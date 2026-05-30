@@ -61,14 +61,18 @@ public static class MessageBroker
             var method = frame.GetMethod();
             var className = method?.DeclaringType?.Name;
 
+            var tasks = new List<Task>();
             foreach (var action in actions)
             {
                 // アクションのクラス名と呼び出し元クラスが一致の場合は処理しない
                 var actionClassName = action.Method?.DeclaringType?.Name;
                 if (className == actionClassName) continue;
 
-                action(data);
+                tasks.Add(Task.Run(() => action(data)));
             }
+            
+            // タスク待ち
+            Task.WaitAll([..tasks]);
         }
     }
 }
