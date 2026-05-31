@@ -52,7 +52,7 @@ public static class MessageBroker
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="data">値</param>
-    public static void Publish(string keyword, object data)
+    public static void Publish<T>(string keyword, T data) where T :notnull
     {
         if (Subscribers.TryGetValue(keyword, out var actions))
         {
