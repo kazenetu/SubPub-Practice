@@ -10,6 +10,11 @@ public static class MessageBroker
     private static Dictionary<string, List<Action<object>>> Subscribers = [];
 
     /// <summary>
+    /// キーワード別asyncリスト
+    /// </summary>
+    private static Dictionary<string, List<Func<object, Task>>> SubscribeAsyncs = [];
+
+    /// <summary>
     /// キーワード別クラス名リスト
     /// </summary>
     private static Dictionary<string, List<string>> ClassNames = [];
