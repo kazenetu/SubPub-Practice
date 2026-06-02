@@ -42,6 +42,28 @@ public static class MessageBroker
     }
 
     /// <summary>
+    /// 購買メソッド
+    /// </summary>
+    /// <param name="keyword">キーワード</param>
+    /// <param name="action">発行時に呼ばれる非同期メソッド</param>
+    public static void Subscribe(string keyword, Func<object, Task> action)
+    {
+        // asyncリストにキーワードが存在しない場合は生成
+        if (!SubscribeAsyncs.ContainsKey(keyword))
+            SubscribeAsyncs.Add(keyword, []);
+
+        // 発行時に呼ばれるメソッドを追加
+        SubscribeAsyncs[keyword].Add(action);
+
+        // クラスリストにキーワードが存在しない場合は生成
+        if (!ClassNames.ContainsKey(keyword))
+            ClassNames.Add(keyword, []);
+
+        // クラス名を追加
+        ClassNames[keyword].Add(action.Method?.DeclaringType?.Name ?? string.Empty);
+    }
+
+    /// <summary>
     /// 購買解除メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
