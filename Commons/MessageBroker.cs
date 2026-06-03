@@ -75,6 +75,17 @@ public static class MessageBroker
     }
 
     /// <summary>
+    /// 購買解除メソッド
+    /// </summary>
+    /// <param name="keyword">キーワード</param>
+    /// <param name="action">購買時に登録したメソッド</param>
+    public static void UnSubscribe(string keyword, Func<object, Task> action)
+    {
+        ClassNames[keyword].Remove(action.Method?.DeclaringType?.Name ?? string.Empty);
+        SubscribeAsyncs[keyword].Remove(action);
+    }
+
+    /// <summary>
     /// 発行メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
