@@ -126,4 +126,45 @@ public static class MessageBroker
         if (tasks.Count > 0)
             Task.WaitAll([.. tasks]);
     }
+
+    /// <summary>
+    /// 非同期発行メソッド
+    /// </summary>
+    /// <param name="keyword">キーワード</param>
+    /// <param name="data">値</param>
+    public static async Task PublishAsync<T>(string keyword, T data) where T : notnull
+    {
+        // 発行元クラスを取得
+        var frame = new StackFrame(1);
+        var method = frame.GetMethod();
+        var className = method?.DeclaringType?.Name;
+
+        // 非同期実行
+        var tasks = new List<Task>();
+        if (Subscribers.TryGetValue(keyword, out var actions))
+        {
+            foreach (var action in actions)
+            {
+                // アクションのクラス名と呼び出し元クラスが一致の場合は処理しない
+                var actionClassName = action.Method?.DeclaringType?.Name;
+                if (className == actionClassName) continue;
+
+                tasks.Add(Task.Run(() => action(data)));
+            }
+        }
+        if (SubscribeAsyncs.TryGetValue(keyword, out var actionsAsyncs))
+        {
+            foreach (var action in actionsAsyncs)
+            {
+                // アクションのクラス名と呼び出し元クラスが一致の場合は処理しない
+                var actionClassName = action.Method?.DeclaringType?.Name;
+                if (className == actionClassName) continue;
+
+                tasks.Add(action(data));
+            }
+        }
+
+        // タスク待ち
+        await Task.WhenAll(tasks);
+    }
 }
