@@ -4,6 +4,8 @@ namespace SubPub_Practice.Commons;
 
 public static class MessageBroker
 {
+    #region フィールド
+
     /// <summary>
     /// キーワード別アクションリスト
     /// </summary>
@@ -18,6 +20,10 @@ public static class MessageBroker
     /// キーワード別クラス名リスト
     /// </summary>
     private static Dictionary<string, List<string>> ClassNames = [];
+
+    #endregion
+
+    #region 購買メソッド
 
     /// <summary>
     /// 購買メソッド
@@ -63,6 +69,10 @@ public static class MessageBroker
         ClassNames[keyword].Add(action.Method?.DeclaringType?.Name ?? string.Empty);
     }
 
+    #endregion
+
+    #region 購買解除メソッド
+
     /// <summary>
     /// 購買解除メソッド
     /// </summary>
@@ -84,6 +94,10 @@ public static class MessageBroker
         ClassNames[keyword].Remove(action.Method?.DeclaringType?.Name ?? string.Empty);
         SubscribeAsyncs[keyword].Remove(action);
     }
+
+    #endregion
+
+    #region 発行メソッド
 
     /// <summary>
     /// 発行メソッド
@@ -167,4 +181,6 @@ public static class MessageBroker
         // タスク待ち
         await Task.WhenAll(tasks);
     }
+
+    #endregion
 }
