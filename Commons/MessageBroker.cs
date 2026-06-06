@@ -2,6 +2,9 @@ using System.Diagnostics;
 
 namespace SubPub_Practice.Commons;
 
+/// <summary>
+/// Publish/Subscribeクラス
+/// </summary>
 public static class MessageBroker
 {
     #region フィールド
