@@ -2,7 +2,7 @@ using SubPub_Practice.Commons;
 
 namespace SubPub_Practice.SampleClass;
 
-public class A
+public class A : IDisposable
 {
     /// <summary>
     /// コンストラクタ
@@ -10,6 +10,14 @@ public class A
     public A()
     {
         MessageBroker.Subscribe("test", Callback);
+    }
+
+    /// <summary>
+    /// 破棄
+    /// </summary>
+    public void Dispose()
+    {
+        MessageBroker.UnSubscribe("test", Callback);
     }
 
     /// <summary>
