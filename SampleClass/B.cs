@@ -21,6 +21,20 @@ public class B : IDisposable
     }
 
     /// <summary>
+    /// 発行
+    /// </summary>
+    public void Publish()
+    {
+        var list = new List<string>()
+        {
+            "パラメータ1",
+            "パラメータ2",
+        };
+
+        MessageBroker.Publish("test", list);
+    }
+
+    /// <summary>
     /// MessageBroker発行時のコールバック
     /// </summary>
     /// <param name="data">発行時に送信された情報</param>
