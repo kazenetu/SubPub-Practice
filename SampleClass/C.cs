@@ -9,6 +9,7 @@ public class C
     /// </summary>
     public C()
     {
+        MessageBroker.Subscribe("test", Callback);
     }
 
     /// <summary>
