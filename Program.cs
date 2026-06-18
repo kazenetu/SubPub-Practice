@@ -9,5 +9,17 @@ class Program
         using var a = new A();
         using var b = new B();
         using var c = new C();
+
+        // 発行
+        Console.WriteLine($"> Publish A");
+        a.Publish();
+
+        Console.WriteLine();
+        Console.WriteLine($"> Publish B");
+        b.Publish();
+
+        Console.WriteLine();
+        Console.WriteLine($"> Publish C");
+        c.Publish();
     }
 }
