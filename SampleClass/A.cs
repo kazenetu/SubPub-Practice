@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Text;
 using SubPub_Practice.Commons;
 
 namespace SubPub_Practice.SampleClass;
@@ -34,6 +36,17 @@ public class A : IDisposable
     /// <param name="data">発行時に送信された情報</param>
     private void Callback(object data)
     {
-        Console.WriteLine($"CallBack A! deta is {data}");
+        var result = data;
+        if (data is IList list)
+        {
+            var resultList = new List<string>();
+            foreach (var item in list)
+            {
+                resultList.Add($"{item}");
+            }
+            result = string.Join(",", resultList);
+        }
+
+        Console.WriteLine($"CallBack A! deta is {result}");
     }
 }
