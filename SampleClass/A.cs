@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Text;
 using SubPub_Practice.Commons;
 
 namespace SubPub_Practice.SampleClass;
@@ -34,8 +33,11 @@ public class A : IDisposable
     /// MessageBroker発行時のコールバック
     /// </summary>
     /// <param name="data">発行時に送信された情報</param>
-    private void Callback(object data)
+    private async Task Callback(object data)
     {
+        // 時間のかかる処理
+        await Task.Delay(1000);
+
         var result = data;
         if (data is IList list)
         {
@@ -47,6 +49,6 @@ public class A : IDisposable
             result = string.Join(",", resultList);
         }
 
-        Console.WriteLine($"CallBack A! deta is {result}");
+        Console.WriteLine($"CallBack A Async! deta is {result}");
     }
 }
