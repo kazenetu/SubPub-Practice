@@ -36,6 +36,14 @@ public class B : IDisposable
     }
 
     /// <summary>
+    /// 発行(非同期化)
+    /// </summary>
+    public async Task PublishAsync()
+    {
+        await MessageBroker.PublishAsync("test", "PublishAsync!");
+    }
+
+    /// <summary>
     /// MessageBroker発行時のコールバック
     /// </summary>
     /// <param name="data">発行時に送信された情報</param>
