@@ -4,7 +4,7 @@ namespace SubPub_Practice;
 
 class Program
 {
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         using var a = new A();
         using var b = new B();
@@ -17,6 +17,10 @@ class Program
         Console.WriteLine();
         Console.WriteLine($"> Publish B");
         b.Publish();
+
+        Console.WriteLine();
+        Console.WriteLine($"> PublishAsync B");
+        await b.PublishAsync();
 
         Console.WriteLine();
         Console.WriteLine($"> Publish C");
