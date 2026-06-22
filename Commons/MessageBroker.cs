@@ -108,11 +108,18 @@ public static class MessageBroker
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="data">値</param>
+    /// <param name="targetClassType">指定クラスType</param>
     /// <param name="path">発行元のファイル名</param>
-    public static void Publish<T>(string keyword, T data, [CallerFilePath] string path = "") where T : notnull
+    public static void Publish<T>(string keyword, T data, Type? targetClassType = null, [CallerFilePath] string path = "") where T : notnull
     {
         // 発行元クラスを取得
-        var className = Path.GetFileNameWithoutExtension(path);
+        var className = targetClassType switch 
+        {
+            null => Path.GetFileNameWithoutExtension(path),
+            _ => targetClassType.Name
+        };
+
+        Console.WriteLine($"   >>> className[{className}] {targetClassType?.Name??"NONE"}");
 
         // 非同期実行
         var tasks = new List<Task>();
@@ -149,11 +156,18 @@ public static class MessageBroker
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="data">値</param>
+    /// <param name="targetClassType">指定クラスType</param>
     /// <param name="path">発行元のファイル名</param>
-    public static async Task PublishAsync<T>(string keyword, T data, [CallerFilePath] string path = "") where T : notnull
+    public static async Task PublishAsync<T>(string keyword, T data, Type? targetClassType = null, [CallerFilePath] string path = "") where T : notnull
     {
         // 発行元クラスを取得
-        var className = Path.GetFileNameWithoutExtension(path);
+        var className = targetClassType switch 
+        {
+            null => Path.GetFileNameWithoutExtension(path),
+            _ => targetClassType.Name
+        };
+
+        Console.WriteLine($"   >>> className[{className}] {targetClassType?.Name??"NONE"}");
 
         // 非同期実行
         var tasks = new List<Task>();
