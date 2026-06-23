@@ -119,8 +119,6 @@ public static class MessageBroker
             _ => targetClassType.Name
         };
 
-        Console.WriteLine($"   >>> className[{className}] {targetClassType?.Name??"NONE"}");
-
         // 非同期実行
         var tasks = new List<Task>();
         if (Subscribers.TryGetValue(keyword, out var actions))
@@ -166,8 +164,6 @@ public static class MessageBroker
             null => Path.GetFileNameWithoutExtension(path),
             _ => targetClassType.Name
         };
-
-        Console.WriteLine($"   >>> className[{className}] {targetClassType?.Name??"NONE"}");
 
         // 非同期実行
         var tasks = new List<Task>();
