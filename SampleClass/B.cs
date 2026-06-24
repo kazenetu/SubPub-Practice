@@ -40,7 +40,8 @@ public class B : IDisposable
     /// </summary>
     public async Task PublishAsync()
     {
-        await MessageBroker.PublishAsync("test", "PublishAsync!");
+        var thisClass = GetType();
+        await MessageBroker.PublishAsync("test", "PublishAsync!", thisClass);
     }
 
     /// <summary>
