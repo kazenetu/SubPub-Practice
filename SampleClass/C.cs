@@ -26,7 +26,8 @@ public class C : IDisposable
     /// </summary>
     public void Publish()
     {
-        MessageBroker.Publish("test", "パラメータ");
+        var thisClass = GetType();
+        MessageBroker.Publish("test", "パラメータ", thisClass);
     }
 
     /// <summary>
