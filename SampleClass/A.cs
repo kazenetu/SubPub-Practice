@@ -3,7 +3,7 @@ using SubPub_Practice.Commons;
 
 namespace SubPub_Practice.SampleClass;
 
-public class A : IDisposable
+public partial class A : IDisposable
 {
     /// <summary>
     /// コンストラクタ
@@ -19,14 +19,6 @@ public class A : IDisposable
     public void Dispose()
     {
         MessageBroker.UnSubscribe("test", Callback);
-    }
-
-    /// <summary>
-    /// 発行
-    /// </summary>
-    public void Publish()
-    {
-        MessageBroker.Publish("test", 1m);
     }
 
     /// <summary>
