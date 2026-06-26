@@ -11,4 +11,12 @@ public partial class A
     {
         MessageBroker.Publish("test", 1m);
     }
+
+    /// <summary>
+    /// 発行(クラスType指定)
+    /// </summary>
+    public async void PublishAsync()
+    {
+        await MessageBroker.PublishAsync("test", "A.PublishAsync! ClassType", GetType());
+    }
 }
