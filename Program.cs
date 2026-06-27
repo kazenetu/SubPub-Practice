@@ -15,6 +15,10 @@ class Program
         a.Publish();
 
         Console.WriteLine();
+        Console.WriteLine($"> Publish ClassType A");
+        a.PublishAsync();
+
+        Console.WriteLine();
         Console.WriteLine($"> Publish B");
         b.Publish();
 
