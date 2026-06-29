@@ -9,7 +9,7 @@ public partial class A
     /// </summary>
     public void Publish()
     {
-        MessageBroker.Publish("test", 1m);
+        MessageBroker.Publish(Keywords.Test, 1m);
     }
 
     /// <summary>
@@ -17,6 +17,6 @@ public partial class A
     /// </summary>
     public async void PublishAsync()
     {
-        await MessageBroker.PublishAsync("test", "A.PublishAsync! ClassType", GetType());
+        await MessageBroker.PublishAsync(Keywords.Test, "A.PublishAsync! ClassType", GetType());
     }
 }

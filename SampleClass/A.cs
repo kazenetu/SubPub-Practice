@@ -10,7 +10,7 @@ public partial class A : IDisposable
     /// </summary>
     public A()
     {
-        MessageBroker.Subscribe("test", Callback);
+        MessageBroker.Subscribe(Keywords.Test, Callback);
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ public partial class A : IDisposable
     /// </summary>
     public void Dispose()
     {
-        MessageBroker.UnSubscribe("test", Callback);
+        MessageBroker.UnSubscribe(Keywords.Test, Callback);
     }
 
     /// <summary>

@@ -10,7 +10,7 @@ public class C : IDisposable
     /// </summary>
     public C()
     {
-        MessageBroker.Subscribe("test", Callback);
+        MessageBroker.Subscribe(Keywords.Test, Callback);
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ public class C : IDisposable
     /// </summary>
     public void Dispose()
     {
-        MessageBroker.UnSubscribe("test", Callback);
+        MessageBroker.UnSubscribe(Keywords.Test, Callback);
     }
 
     /// <summary>
@@ -27,7 +27,7 @@ public class C : IDisposable
     public void Publish()
     {
         var thisClass = GetType();
-        MessageBroker.Publish("test", "パラメータ", thisClass);
+        MessageBroker.Publish(Keywords.Test, "パラメータ", thisClass);
     }
 
     /// <summary>

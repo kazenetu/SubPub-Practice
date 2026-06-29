@@ -10,7 +10,7 @@ public class B : IDisposable
     /// </summary>
     public B()
     {
-        MessageBroker.Subscribe("test", Callback);
+        MessageBroker.Subscribe(Keywords.Test, Callback);
     }
 
     /// <summary>
@@ -18,7 +18,7 @@ public class B : IDisposable
     /// </summary>
     public void Dispose()
     {
-        MessageBroker.UnSubscribe("test", Callback);
+        MessageBroker.UnSubscribe(Keywords.Test, Callback);
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class B : IDisposable
             "パラメータ2",
         };
 
-        MessageBroker.Publish("test", list);
+        MessageBroker.Publish(Keywords.Test, list);
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public class B : IDisposable
     public async Task PublishAsync()
     {
         var thisClass = GetType();
-        await MessageBroker.PublishAsync("test", "PublishAsync!", thisClass);
+        await MessageBroker.PublishAsync(Keywords.Test, "PublishAsync!", thisClass);
     }
 
     /// <summary>
