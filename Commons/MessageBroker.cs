@@ -113,7 +113,7 @@ public static class MessageBroker
     public static void Publish<T>(string keyword, T data, Type? targetClassType = null, [CallerFilePath] string path = "") where T : notnull
     {
         // 発行元クラスを取得
-        var className = targetClassType switch 
+        var className = targetClassType switch
         {
             null => Path.GetFileNameWithoutExtension(path),
             _ => targetClassType.Name
@@ -159,7 +159,7 @@ public static class MessageBroker
     public static async Task PublishAsync<T>(string keyword, T data, Type? targetClassType = null, [CallerFilePath] string path = "") where T : notnull
     {
         // 発行元クラスを取得
-        var className = targetClassType switch 
+        var className = targetClassType switch
         {
             null => Path.GetFileNameWithoutExtension(path),
             _ => targetClassType.Name
