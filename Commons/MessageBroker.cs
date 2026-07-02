@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace SubPub_Practice.Commons;
 
@@ -107,12 +108,16 @@ public static class MessageBroker
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="data">値</param>
-    public static void Publish<T>(string keyword, T data) where T : notnull
+    /// <param name="targetClassType">指定クラスType</param>
+    /// <param name="path">発行元のファイル名</param>
+    public static void Publish<T>(string keyword, T data, Type? targetClassType = null, [CallerFilePath] string path = "") where T : notnull
     {
         // 発行元クラスを取得
-        var frame = new StackFrame(1);
-        var method = frame.GetMethod();
-        var className = method?.DeclaringType?.Name;
+        var className = targetClassType switch
+        {
+            null => Path.GetFileNameWithoutExtension(path),
+            _ => targetClassType.Name
+        };
 
         // 非同期実行
         var tasks = new List<Task>();
@@ -132,7 +137,7 @@ public static class MessageBroker
             foreach (var action in actionsAsyncs)
             {
                 // アクションのクラス名と呼び出し元クラスが一致の場合は処理しない
-                var actionClassName = action.Method?.DeclaringType?.Name;
+                var actionClassName = action.Target?.GetType().Name;
                 if (className == actionClassName) continue;
 
                 tasks.Add(action(data));
@@ -149,12 +154,16 @@ public static class MessageBroker
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="data">値</param>
-    public static async Task PublishAsync<T>(string keyword, T data) where T : notnull
+    /// <param name="targetClassType">指定クラスType</param>
+    /// <param name="path">発行元のファイル名</param>
+    public static async Task PublishAsync<T>(string keyword, T data, Type? targetClassType = null, [CallerFilePath] string path = "") where T : notnull
     {
         // 発行元クラスを取得
-        var frame = new StackFrame(1);
-        var method = frame.GetMethod();
-        var className = method?.DeclaringType?.Name;
+        var className = targetClassType switch
+        {
+            null => Path.GetFileNameWithoutExtension(path),
+            _ => targetClassType.Name
+        };
 
         // 非同期実行
         var tasks = new List<Task>();
@@ -174,7 +183,7 @@ public static class MessageBroker
             foreach (var action in actionsAsyncs)
             {
                 // アクションのクラス名と呼び出し元クラスが一致の場合は処理しない
-                var actionClassName = action.Method?.DeclaringType?.Name;
+                var actionClassName = action.Target?.GetType().Name;
                 if (className == actionClassName) continue;
 
                 tasks.Add(action(data));
