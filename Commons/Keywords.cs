@@ -9,4 +9,9 @@ public static class Keywords
     /// テスト用キーワード
     /// </summary>
     public static string Test = "Test";
+
+    /// <summary>
+    /// Aへ情報提供リクエスト
+    /// </summary>
+    public static string  RequestA = "RequestA";
 }
