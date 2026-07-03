@@ -19,4 +19,9 @@ public static class Keywords
     /// Aの情報送信
     /// </summary>
     private static string SendA = "SendA";
+
+    /// <summary>
+    /// Bへ情報提供リクエスト
+    /// </summary>
+    public static string RequestB = "RequestB";
 }
