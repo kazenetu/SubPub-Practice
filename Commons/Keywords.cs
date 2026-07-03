@@ -13,5 +13,10 @@ public static class Keywords
     /// <summary>
     /// Aへ情報提供リクエスト
     /// </summary>
-    public static string  RequestA = "RequestA";
+    public static string RequestA = "RequestA";
+
+    /// <summary>
+    /// Aの情報送信
+    /// </summary>
+    private static string SendA = "SendA";
 }
