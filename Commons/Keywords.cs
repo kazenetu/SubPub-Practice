@@ -18,10 +18,15 @@ public static class Keywords
     /// <summary>
     /// Aの情報送信
     /// </summary>
-    private static string SendA = "SendA";
+    public static string SendA = "SendA";
 
     /// <summary>
     /// Bへ情報提供リクエスト
     /// </summary>
     public static string RequestB = "RequestB";
+
+    /// <summary>
+    /// Bの情報送信
+    /// </summary>
+    public static string SendB = "SendB";
 }
