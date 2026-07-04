@@ -8,25 +8,25 @@ public static class Keywords
     /// <summary>
     /// テスト用キーワード
     /// </summary>
-    public static string Test = "Test";
+    public static string Test => "Test";
 
     /// <summary>
     /// Aへ情報提供リクエスト
     /// </summary>
-    public static string RequestA = "RequestA";
+    public static string RequestA => "RequestA";
 
     /// <summary>
     /// Aの情報送信
     /// </summary>
-    public static string SendA = "SendA";
+    public static string SendA => "SendA";
 
     /// <summary>
     /// Bへ情報提供リクエスト
     /// </summary>
-    public static string RequestB = "RequestB";
+    public static string RequestB => "RequestB";
 
     /// <summary>
     /// Bの情報送信
     /// </summary>
-    public static string SendB = "SendB";
+    public static string SendB => "SendB";
 }
