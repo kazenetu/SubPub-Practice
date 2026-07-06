@@ -37,7 +37,8 @@ public class DataTakerA : IDisposable
             result = string.Join(",", resultList);
         }
 
-        // HACK 発行
-        Console.WriteLine($"CallBack DataTakerA! deta is {result}");
+        // 発行
+        var sendData = "DataTakerA";
+        MessageBroker.Publish(Keywords.SendA, sendData);
     }
 }
