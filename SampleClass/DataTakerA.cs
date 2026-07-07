@@ -3,8 +3,14 @@ using SubPub_Practice.Commons;
 
 namespace SubPub_Practice.SampleClass;
 
+/// <summary>
+/// データ提供クラスA
+/// </summary>
 public class DataTakerA : IDisposable
 {
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
     public DataTakerA()
     {
         // リクエストの購読
