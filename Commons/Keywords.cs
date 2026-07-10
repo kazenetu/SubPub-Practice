@@ -34,4 +34,9 @@ public static class Keywords
     /// Bの情報送信
     /// </summary>
     public static string SendB => "SendB";
+
+    /// <summary>
+    /// Aの情報送信
+    /// </summary>
+    public static string ResponseB => "ResponseB";
 }
