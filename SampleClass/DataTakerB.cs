@@ -42,5 +42,9 @@ public class DataTakerB
             }
             result = string.Join(",", resultList);
         }
+
+        // 発行
+        var sendData = "DataTakerB";
+        MessageBroker.Publish(Keywords.SendB, sendData);
     }
 }
