@@ -45,6 +45,6 @@ public class DataTakerA : IDisposable
 
         // 発行
         var sendData = "DataTakerA";
-        MessageBroker.Publish(Keywords.SendA, sendData);
+        MessageBroker.Publish(Keywords.ResponseA, sendData);
     }
 }
