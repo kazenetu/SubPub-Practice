@@ -18,11 +18,6 @@ public static class Keywords
     /// <summary>
     /// Aの情報送信
     /// </summary>
-    public static string SendA => "SendA";
-
-    /// <summary>
-    /// Aの情報送信
-    /// </summary>
     public static string ResponseA => "ResponseA";
 
     /// <summary>
