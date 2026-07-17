@@ -1,11 +1,12 @@
 using System.Collections;
+using SubPub_Practice.Commons;
 
 namespace SubPub_Practice.SampleClass;
 
 /// <summary>
 /// データ取得クラス
 /// </summary>
-public class DataGever
+public class DataGever : IDisposable
 {
     #region プロパティ
 
@@ -20,6 +21,26 @@ public class DataGever
     public string? ResultB { private set; get; }
 
     #endregion
+
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public DataGever()
+    {
+        // リクエストの購読
+        MessageBroker.Subscribe(Keywords.ResponseA, CallbackResponseA);
+        MessageBroker.Subscribe(Keywords.ResponseB, CallbackResponseB);
+    }
+
+    /// <summary>
+    /// 破棄
+    /// </summary>
+    public void Dispose()
+    {
+        // リクエストの購読解除
+        MessageBroker.UnSubscribe(Keywords.ResponseA, CallbackResponseA);
+        MessageBroker.UnSubscribe(Keywords.ResponseB, CallbackResponseB);
+    }
 
     #region イベント
 
