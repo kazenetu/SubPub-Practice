@@ -42,6 +42,24 @@ public class DataGever : IDisposable
         MessageBroker.UnSubscribe(Keywords.ResponseB, CallbackResponseB);
     }
 
+    #region メソッド
+
+    /// <summary>
+    /// 発行(非同期化)
+    /// </summary>
+    public async Task PublishAsync()
+    {
+        var thisClass = GetType();
+
+        // 提供クラスA取得リクエスト発行
+        await MessageBroker.PublishAsync(Keywords.RequestA, string.Empty, thisClass);
+
+        // 提供クラスB取得リクエスト発行
+        await MessageBroker.PublishAsync(Keywords.RequestB, string.Empty, thisClass);
+    }
+
+    #endregion
+
     #region イベント
 
     /// <summary>
