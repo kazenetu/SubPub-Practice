@@ -56,6 +56,9 @@ public class DataGever : IDisposable
 
         // 提供クラスB取得リクエスト発行
         await MessageBroker.PublishAsync(Keywords.RequestB, string.Empty, thisClass);
+
+        // 結果を出力
+        Console.WriteLine($"   >> ResultA:{ResultA}  ResultB:{ResultB}");
     }
 
     #endregion
