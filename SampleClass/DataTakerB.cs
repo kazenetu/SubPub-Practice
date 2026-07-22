@@ -1,5 +1,6 @@
 using System.Collections;
 using SubPub_Practice.Commons;
+using SubPub_Practice.SampleClass.Records;
 
 namespace SubPub_Practice.SampleClass;
 
@@ -42,6 +43,9 @@ public class DataTakerB: IDisposable
             }
             result = string.Join(",", resultList);
         }
+
+        // RequestRecordでTargetsが自身ではない場合は終了
+        if (data is RequestRecord req && req.Target != RequestRecord.Targets.DataTakerB) return;
 
         // 発行
         var sendData = "DataTakerB";
