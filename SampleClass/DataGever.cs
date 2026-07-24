@@ -1,5 +1,6 @@
 using System.Collections;
 using SubPub_Practice.Commons;
+using SubPub_Practice.SampleClass.Records;
 
 namespace SubPub_Practice.SampleClass;
 
@@ -52,10 +53,12 @@ public class DataGever : IDisposable
         var thisClass = GetType();
 
         // 提供クラスA取得リクエスト発行
-        await MessageBroker.PublishAsync(Keywords.RequestA, string.Empty, thisClass);
+        var dataRequestA = new RequestRecord(RequestRecord.Targets.DataTakerA);
+        await MessageBroker.PublishAsync(Keywords.RequestA, dataRequestA, thisClass);
 
         // 提供クラスB取得リクエスト発行
-        await MessageBroker.PublishAsync(Keywords.RequestB, string.Empty, thisClass);
+        var dataRequestB = new RequestRecord(RequestRecord.Targets.DataTakerB);
+        await MessageBroker.PublishAsync(Keywords.RequestB, dataRequestB, thisClass);
 
         // 結果を出力
         Console.WriteLine($"   >> ResultA:{ResultA}  ResultB:{ResultB}");
