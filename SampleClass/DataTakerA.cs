@@ -15,7 +15,7 @@ public class DataTakerA : IDisposable
     public DataTakerA()
     {
         // リクエストの購読
-        MessageBroker.Subscribe(Keywords.RequestA, Callback);
+        MessageBroker.Subscribe(Keywords.Request, Callback);
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public class DataTakerA : IDisposable
     public void Dispose()
     {
         // リクエストの購読解除
-        MessageBroker.UnSubscribe(Keywords.RequestA, Callback);
+        MessageBroker.UnSubscribe(Keywords.Request, Callback);
     }
 
     /// <summary>
