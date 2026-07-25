@@ -11,6 +11,11 @@ public static class Keywords
     public static string Test => "Test";
 
     /// <summary>
+    /// リクエスト
+    /// </summary>
+    public static string Request => "Request";
+
+    /// <summary>
     /// Aへ情報提供リクエスト
     /// </summary>
     public static string RequestA => "RequestA";
