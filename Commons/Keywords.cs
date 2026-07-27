@@ -16,19 +16,9 @@ public static class Keywords
     public static string Request => "Request";
 
     /// <summary>
-    /// Aへ情報提供リクエスト
-    /// </summary>
-    public static string RequestA => "RequestA";
-
-    /// <summary>
     /// Aの情報送信
     /// </summary>
     public static string ResponseA => "ResponseA";
-
-    /// <summary>
-    /// Bへ情報提供リクエスト
-    /// </summary>
-    public static string RequestB => "RequestB";
 
     /// <summary>
     /// Aの情報送信
