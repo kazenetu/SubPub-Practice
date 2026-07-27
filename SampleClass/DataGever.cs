@@ -54,11 +54,11 @@ public class DataGever : IDisposable
 
         // 提供クラスA取得リクエスト発行
         var dataRequestA = new RequestRecord(RequestRecord.Targets.DataTakerA);
-        await MessageBroker.PublishAsync(Keywords.RequestA, dataRequestA, thisClass);
+        await MessageBroker.PublishAsync(Keywords.Request, dataRequestA, thisClass);
 
         // 提供クラスB取得リクエスト発行
         var dataRequestB = new RequestRecord(RequestRecord.Targets.DataTakerB);
-        await MessageBroker.PublishAsync(Keywords.RequestB, dataRequestB, thisClass);
+        await MessageBroker.PublishAsync(Keywords.Request, dataRequestB, thisClass);
 
         // 結果を出力
         Console.WriteLine($"   >> ResultA:{ResultA}  ResultB:{ResultB}");
