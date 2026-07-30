@@ -28,27 +28,16 @@ public class DataTakerA : IDisposable
     }
 
     /// <summary>
-    /// MessageBroker購読コールバック
+    /// 購読コールバック：ResponseARecord発行
     /// </summary>
     /// <param name="data">発行時に送信された情報</param>
     private void Callback(object data)
     {
-        var result = data;
-        if (data is IList list)
-        {
-            var resultList = new List<string>();
-            foreach (var item in list)
-            {
-                resultList.Add($"{item}");
-            }
-            result = string.Join(",", resultList);
-        }
-
         // RequestRecordでTargetsが自身ではない場合は終了
         if (data is RequestRecord req && req.Target != RequestRecord.Targets.DataTakerA) return;
 
         // 発行
-        var sendData = "DataTakerA";
-        MessageBroker.Publish(Keywords.ResponseA, sendData);
+        var responseData = new ResponseARecord(["s1", "s2"], "ResponseARecord");
+        MessageBroker.Publish(Keywords.ResponseA, responseData);
     }
 }
