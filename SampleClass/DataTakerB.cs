@@ -37,7 +37,7 @@ public class DataTakerB : IDisposable
         if (data is RequestRecord req && req.Target != RequestRecord.Targets.DataTakerB) return;
 
         // 発行
-        var responseData = new ResponseBRecord("ResponseBRecord!",99);
+        var responseData = new ResponseBRecord("ResponseBRecord!", 99);
         MessageBroker.Publish(Keywords.ResponseB, responseData);
     }
 }
