@@ -14,12 +14,12 @@ public class DataGever : IDisposable
     /// <summary>
     /// データ提供クラスAの提供情報
     /// </summary>
-    public string? ResultA { private set; get; }
+    public ResponseARecord? ResultA { private set; get; }
 
     /// <summary>
     /// データ提供クラスBの提供情報
     /// </summary>
-    public string? ResultB { private set; get; }
+    public ResponseBRecord? ResultB { private set; get; }
 
     #endregion
 
@@ -61,7 +61,11 @@ public class DataGever : IDisposable
         await MessageBroker.PublishAsync(Keywords.Request, dataRequestB, thisClass);
 
         // 結果を出力
-        Console.WriteLine($"   >> ResultA:{ResultA}  ResultB:{ResultB}");
+        var properties = $"DataStrings = [{string.Join(", ", ResultA!.DataStrings)}], DataString = {ResultA!.DataString}";
+        var resultA = "ResultA:ResponseARecord { " + properties + " }";
+        Console.WriteLine($"   >> ResultA:{resultA}");
+        var resultB = $"{ResultB}";
+        Console.WriteLine($"   >> ResultB:{resultB}");
     }
 
     #endregion
@@ -78,8 +82,7 @@ public class DataGever : IDisposable
         if (data is not ResponseARecord response) return;
 
         // プロパティに格納
-        var properties = $"DataStrings = [{string.Join(", ", response.DataStrings)}], DataString = {response.DataString}";
-        ResultA = "ResultA:ResponseARecord { " + properties + " }";
+        ResultA = response;
     }
 
     /// <summary>
@@ -92,7 +95,7 @@ public class DataGever : IDisposable
         if (data is not ResponseBRecord response) return;
 
         // プロパティに格納
-        ResultB = $"{response}";
+        ResultB = response;
     }
 
     #endregion
