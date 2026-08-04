@@ -27,10 +27,10 @@ public static class MessageBroker
 
     #endregion
 
-    #region 購買メソッド
+    #region 購読メソッド
 
     /// <summary>
-    /// 購買メソッド
+    /// 購読メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="action">発行時に呼ばれるメソッド</param>
@@ -52,7 +52,7 @@ public static class MessageBroker
     }
 
     /// <summary>
-    /// 購買メソッド
+    /// 購読メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
     /// <param name="action">発行時に呼ばれる非同期メソッド</param>
@@ -75,13 +75,13 @@ public static class MessageBroker
 
     #endregion
 
-    #region 購買解除メソッド
+    #region 購読解除メソッド
 
     /// <summary>
-    /// 購買解除メソッド
+    /// 購読解除メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
-    /// <param name="action">購買時に登録したメソッド</param>
+    /// <param name="action">購読時に登録したメソッド</param>
     public static void UnSubscribe(string keyword, Action<object> action)
     {
         ClassNames[keyword].Remove(action.Method?.DeclaringType?.Name ?? string.Empty);
@@ -89,10 +89,10 @@ public static class MessageBroker
     }
 
     /// <summary>
-    /// 購買解除メソッド
+    /// 購読解除メソッド
     /// </summary>
     /// <param name="keyword">キーワード</param>
-    /// <param name="action">購買時に登録したメソッド</param>
+    /// <param name="action">購読時に登録したメソッド</param>
     public static void UnSubscribe(string keyword, Func<object, Task> action)
     {
         ClassNames[keyword].Remove(action.Method?.DeclaringType?.Name ?? string.Empty);
