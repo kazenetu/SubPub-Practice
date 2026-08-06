@@ -29,5 +29,17 @@ class Program
         Console.WriteLine();
         Console.WriteLine($"> Publish C");
         c.Publish();
+
+        // 情報取得
+        Console.WriteLine();
+        Console.WriteLine($"> DataGever");
+
+        // 情報提供クラス生成
+        var dataTakerA = new DataTakerA();
+        var dataTakerB = new DataTakerB();
+
+        //情報取得クラス生成、メソッド呼び出し
+        var dataGever = new DataGever();
+        await dataGever.PublishAsync();
     }
 }
