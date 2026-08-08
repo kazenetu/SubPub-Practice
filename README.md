@@ -1,2 +1,2 @@
 # SubPub-Practice
-Sub/Pubの試作
+Pub/Subメッセージ機能の試作
