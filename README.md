@@ -6,3 +6,6 @@ Pub/Subメッセージ機能の試作
 
 ## ライセンス
 * [MITライセンス](LICENSE)  
+
+## 実行方法
+* ```dotnet run```
