@@ -45,7 +45,7 @@ public class B : IDisposable
     }
 
     /// <summary>
-    /// MessageBroker発行時のコールバック
+    /// 購読コールバック
     /// </summary>
     /// <param name="data">発行時に送信された情報</param>
     private void Callback(object data)
